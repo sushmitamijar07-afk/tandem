@@ -1,0 +1,62 @@
+name: CI
+
+on:
+  push:
+  schedule:
+    # Nightly fork tests against the live Mezo testnet RPC.
+    - cron: "0 3 * * *"
+  workflow_dispatch:
+
+jobs:
+  contracts:
+    if: github.event_name != 'schedule'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - uses: foundry-rs/foundry-toolchain@v1
+
+      - name: forge test (no fork tests)
+        working-directory: contracts
+        run: forge test --no-match-path "test/fork/*"
+
+  web:
+    if: github.event_name != 'schedule'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          cache-dependency-path: web/pnpm-lock.yaml
+
+      - name: Install web dependencies
+        run: pnpm -C web install
+
+      - name: Build web
+        run: pnpm -C web build
+
+      - name: Test web
+        run: pnpm -C web test
+
+  fork:
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - uses: foundry-rs/foundry-toolchain@v1
+
+      - name: forge fork tests (nightly)
+        working-directory: contracts
+        run: forge test --match-path "test/fork/*" --fork-url https://rpc.test.mezo.org

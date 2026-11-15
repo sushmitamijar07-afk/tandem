@@ -1,0 +1,12 @@
+# None of these native build scripts are needed (pure-JS fallbacks are used).
+allowBuilds:
+  bufferutil: false
+  core-js: false
+  es5-ext: false
+  esbuild: false
+  keccak: false
+  secp256k1: false
+  utf-8-validate: false
+  web3-bzz: false
+  web3-shh: false
+  web3: false

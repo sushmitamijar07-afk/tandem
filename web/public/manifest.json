@@ -1,0 +1,10 @@
+{
+  "name": "Tandem",
+  "short_name": "Tandem",
+  "description": "Swap MUSD and BTC in short rounds on Mezo Testnet.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f4f5f7",
+  "theme_color": "#14508a",
+  "icons": [{ "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml" }]
+}

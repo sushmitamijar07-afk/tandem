@@ -1,0 +1,142 @@
+@import "tailwindcss";
+
+/* Tandem: cool paper, ink, one deep blue, a Bitcoin amber used only for BTC. */
+:root {
+  --bg: #f4f5f7;
+  --surface: #ffffff;
+  --ink: #14181f;
+  --muted: #566070;
+  --line: #d9dde4;
+  --brand: #14508a;
+  --brand-hover: #0f3f6e;
+  --on-brand: #f5f9ff;
+  --btc: #a8500b;
+  --warn-bg: #fbf0cd;
+  --warn-line: #d9bb55;
+  --warn-ink: #4d3b00;
+  --bad: #9b2c1f;
+  --good: #146a4a;
+}
+
+.dark {
+  --bg: #0e1218;
+  --surface: #151b23;
+  --ink: #e8ecf1;
+  --muted: #98a3b2;
+  --line: #29313c;
+  --brand: #6fb0ee;
+  --brand-hover: #8cc2f5;
+  --on-brand: #07121e;
+  --btc: #f0a15c;
+  --warn-bg: #2b2408;
+  --warn-line: #6b5a14;
+  --warn-ink: #f0dc8c;
+  --bad: #f08a7b;
+  --good: #5fd0a0;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-brand: var(--brand);
+  --color-brand-hover: var(--brand-hover);
+  --color-on-brand: var(--on-brand);
+  --color-btc: var(--btc);
+  --color-warn-bg: var(--warn-bg);
+  --color-warn-line: var(--warn-line);
+  --color-warn-ink: var(--warn-ink);
+  --color-bad: var(--bad);
+  --color-good: var(--good);
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+html {
+  color-scheme: light;
+}
+html.dark {
+  color-scheme: dark;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+.num {
+  font-variant-numeric: tabular-nums;
+}
+
+:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
+
+@keyframes shimmer {
+  0% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.55;
+  }
+}
+.skeleton {
+  background: var(--line);
+  border-radius: 2px;
+  animation: shimmer 1.4s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.rise {
+  animation: rise 0.35s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton,
+  .spinner,
+  .rise {
+    animation: none;
+  }
+}
+
+input[type="text"],
+input[inputmode="decimal"] {
+  font-variant-numeric: tabular-nums;
+}
+
+[data-rk] {
+  font-family: var(--font-sans);
+}

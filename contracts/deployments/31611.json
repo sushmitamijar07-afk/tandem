@@ -1,0 +1,8 @@
+{
+  "BatchSettler": "0xACE4757a57Cf061A8B8eA09Bc8BEa34B6f284e5c",
+  "IntentBook": "0x91713e27E072Bb058973e802807B66E4BD06ba80",
+  "PriceGuard": "0x68B5007d9BbDCc01441047454a8A99a0F3e552b6",
+  "deployBlock": 16794079,
+  "gapBps": 1900,
+  "oracleBandBps": 2300
+}

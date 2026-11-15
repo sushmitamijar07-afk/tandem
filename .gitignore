@@ -1,0 +1,17 @@
+.env*
+!.env.example
+broadcast/
+out/
+cache/
+node_modules/
+*.mp4
+.next/
+.vercel/
+.DS_Store
+docs/BUILD_PROMPT.md
+.claude/
+.audit-*/
+.solidity-auditor/
+
+# gallery screenshots stay local
+docs/submission/[0-9]-*.png
